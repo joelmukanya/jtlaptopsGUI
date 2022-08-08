@@ -1,18 +1,23 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container-fluid">
+    <iframe :src="getRoadMap" class="container vh-100"
+     frameborder="0"></iframe>
   </div>
 </template>
-
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'HomeView',
-  components: {
-    HelloWorld
+  computed: {
+    getRoadMap() {
+      if(this.$store.state.readMeData){
+        return this.$store.state.readMeData
+      }else {
+        return "Loading..";
+      }
+      
+    }
   }
 }
 </script>

@@ -1,11 +1,22 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <HeaderComponent/>
+  <div class="container-fluid min-vh-100">
+    <!-- <SpinnerComponent/> -->
+    <router-view/>
+  </div>
+  <FooterComponent/>
 </template>
+<script>
+import HeaderComponent from './components/HeaderComponent.vue'
+import FooterComponent from './components/FooterComponent.vue'
 
+export default {
+  components: {
+    HeaderComponent,
+    FooterComponent
+  }
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -21,7 +32,10 @@ nav {
 
 nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: white;
+  border: 2px solid green;
+  border-radius: 5px;
+  padding: 2px 5px;
 }
 
 nav a.router-link-exact-active {

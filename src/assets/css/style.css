@@ -1,0 +1,79 @@
+/* Bootstrap icons */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+/* Select all elements */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Home Page */
+.row .card {
+    width: 16rem;
+    margin: 5px;
+    border-radius: 10%;
+}
+.row .card img , .sameSize{
+    width: 100%;
+    height: 50%;  
+    border-top-left-radius: 10%;
+    border-top-right-radius: 10%;   
+}
+.card-body {
+    background-color: darkgrey;
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;      
+}
+
+fieldset legend {
+    text-shadow: 2px 2px 2px darkgreen;
+}
+.form {
+    width: fit-content;
+    margin: auto;
+}
+.form .row {
+    margin: 5px;
+} 
+.form input {
+    width: 50vw;
+    box-shadow: 5px 5px 5px rgb(41, 42, 41);
+    text-align: center;
+    padding: 5px 0;
+    text-shadow: 1px 1px 1px rgb(122, 136, 136);
+}
+.form label {
+    text-shadow: 1px 1px darkgrey;
+}
+/* Media query */
+@media screen and (max-width: 999px) {
+    /* Card */
+    .ourProducts {
+        justify-content: center;
+    }
+    /* Table */
+    .setTableOff tbody, 
+    .setTableOff tr,
+    .setTableOff td {
+        display: block;
+    }
+
+    .setTableOff thead tr {
+        position: absolute;
+        display: none;
+    }
+
+    .setTableOff tbody td {
+        position: relative;
+        text-align: center;
+        padding-left: 20vw;
+    }
+
+    .setTableOff tbody td::before {
+        content: attr(data-title);
+        position: absolute;
+        left: 0;
+        font-weight: bold;
+        background-color: darkgrey;
+    }
+}
