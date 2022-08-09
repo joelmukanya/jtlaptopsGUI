@@ -10,7 +10,7 @@
             <router-link to="/">Home</router-link> |
           </li>
           <li class="nav-item">
-            <router-link to="#">Admin</router-link>
+            <router-link to="/admin">Admin</router-link>
           </li>
         </ul>
         <!-- User Account -->
@@ -30,8 +30,5 @@
 
 <script>
 export default {
-  computed: {
-    
-  }
 }
 </script>

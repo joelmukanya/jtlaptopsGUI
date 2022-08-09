@@ -8,7 +8,7 @@ export default createStore({
     users: null,
     products: null,
     showSpinner: true,
-    readMeData: jtlaptopsURL 
+    readMeData: null 
   },
   getters: {
     getUsers: state => state.users,
@@ -23,9 +23,22 @@ export default createStore({
     },
     setShowSpinner(state, value) {
       state.showSpinner = value
+    },
+    setReadMeUrl(state, value) {
+      state.readMeData = value
     }
   },
   actions: {
+    fetchReadMeUrl: async(context)=> {
+      let res = await axios.get(jtlaptopsURL);
+      let {url} = await res.config;
+      if((url != null) || (url != undefined)) {
+        context.commit('setReadMeUrl', url);
+        context.commit('setShowSpinner', false);
+      }else {
+        context.commit('setShowSpinner', true);
+      }
+    },
     fetchUsers: async (context) => {
       let res = await axios.get(jtlaptopsURL+"users");
       let {results } = await res.data;
@@ -59,15 +72,15 @@ export default createStore({
     },
     //Signup
     signUp: async (context, payload)=> {
-      let {firstname, lastname, gender, address, userRole, email, userpassword} = payload;
+      let {fullname, email, userpassword, userRole,
+        phonenumber, joinDate, } = payload;
       const data = {
-        firstname, 
-        lastname, 
-        gender,
-        address, 
-        userRole,
+        fullname, 
         email,
-        userpassword
+        userpassword,
+        userRole,
+        phonenumber,
+        joinDate
       };
       let res = await axios.post(jtlaptopsURL+"users", data);
       let results  = await res.data;

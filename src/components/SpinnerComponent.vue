@@ -5,7 +5,6 @@
 
 <script>
 export default {
-
 }
 </script>
 
@@ -14,5 +13,6 @@ export default {
         width: 10rem;   
         height: 10rem;  
         margin: 5px 0;
+        z-index: 50;
     }
 </style>

@@ -1,7 +1,6 @@
 <template>
   <HeaderComponent/>
   <div class="container-fluid min-vh-100">
-    <!-- <SpinnerComponent/> -->
     <router-view/>
   </div>
   <FooterComponent/>
