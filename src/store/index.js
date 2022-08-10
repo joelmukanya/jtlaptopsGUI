@@ -44,6 +44,7 @@ export default createStore({
       let {results } = await res.data;
       if(results) {
         context.commit('setUsers', results);
+        context.commit('setShowSpinner', false);
       }
     },
     fetchProducts: async (context)=> {
