@@ -1,7 +1,7 @@
 <template>
     <div class="container">
       <fieldset>
-          <legend class="display-2">Create a user account</legend>
+          <legend class="display-2">Please fill in your details.</legend>
           <form class="form">
               <div class="row">
                 <input class="form-control col" name="fullname" id="fullname"
@@ -36,12 +36,21 @@
               </div>
           </form>
       </fieldset>
-  </div>
+    </div>
 </template>
 
 <script>
 export default {
-
+  data() {
+    return {
+      fullname: null, 
+      email: null,
+      userpassword: null,
+      userRole: null,
+      phonenumber: null,
+      joinDate: null 
+    }
+  }
 }
 </script>
 

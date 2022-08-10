@@ -2,9 +2,9 @@
   <div class="container">
     <div class="row my-2">
       <div class="col-md">
-        <router-link to="/#">
-          <button class="btn btn-primary">Add New User</button>
-        </router-link>
+        <button class="btn btn-primary" 
+        data-bs-toggle="modal" data-bs-target="#addUserModal">Add New User</button>
+        <AdminAddUser identify="addUserModal"/>
       </div>
       <div class="col-md">
         <router-link to="/#">
@@ -93,6 +93,7 @@
 </template>
 
 <script>
+import AdminAddUser from '@/components/AdminAddUser.vue';
 export default {
   computed: {
     users() {
@@ -101,6 +102,12 @@ export default {
     products() {
       return this.$store.state.products
     }
+  },
+  components: {
+    AdminAddUser
+  },
+  props: {
+    identify: String
   },
   mounted() {
     this.$store.dispatch('fetchUsers');
