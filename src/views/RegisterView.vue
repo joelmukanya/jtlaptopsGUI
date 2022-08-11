@@ -2,7 +2,7 @@
     <div class="container">
       <fieldset>
           <legend class="display-2">Please fill in your details.</legend>
-          <form class="form">
+          <form class="form" @submit.prevent="signUp">
               <div class="row">
                 <input class="form-control col" name="fullname" id="fullname"
                 v-model="fullname" type="text" placeholder="Enter your fullname" required/>
@@ -23,7 +23,7 @@
               </div>
               <div class="row">
                 <input class="form-control col" name="phonenumber" id="phonenumber"
-                v-model="phonenumber" type="tel" placeholder="Enter your phone number" pattern="[0-9]{3}-[0-9]{2}-[0-9]{2}-[0-9]{3}" maxlength="10"/>
+                v-model="phonenumber" type="tel" placeholder="Enter your phone number" maxlength="10"/>
               </div> 
               <div class="row">
                 <input class="form-control col" type="date" v-model="joinDate"/>
@@ -32,7 +32,7 @@
                <label class="form-control text-danger" v-if="errMsg">{{errMsg}}</label>
               </div>
               <div class="row">
-                <div class="btn btn-success">Login</div>
+                <button type="submit"  class="btn btn-success">Register</button>
               </div>
           </form>
       </fieldset>
@@ -48,8 +48,30 @@ export default {
       userpassword: null,
       userRole: null,
       phonenumber: null,
-      joinDate: null 
+      joinDate: null,
+      errMsg: null
     }
+  },
+  methods: {
+    signUp() {
+      try{
+        return this.$store.dispatch("signUp", 
+          {
+            fullname: this.fullname, 
+            email: this.email,
+            userpassword: this.userpassword,
+            userRole: this.userRole,
+            phonenumber: this.phonenumber,
+            joinDate: this.joinDate,
+          }
+        );
+      }catch(e) {
+        this.errMsg = e.message;
+      }
+    }
+  },
+  mounted() {
+    this.$store.state.showSpinner = false;
   }
 }
 </script>

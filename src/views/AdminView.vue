@@ -4,12 +4,10 @@
       <div class="col-md">
         <button class="btn btn-primary" 
         data-bs-toggle="modal" data-bs-target="#addUserModal">Add New User</button>
-        <AdminAddUser identify="addUserModal"/>
+        <AddOrUpdateUser identify="addUserModal"/>
       </div>
       <div class="col-md">
-        <router-link to="/#">
-          <button class="btn btn-primary">Add New Product</button>
-        </router-link>
+        <button class="btn btn-primary">Add New Product</button>
       </div>
     </div>
     <h2 class="display-2">User</h2>
@@ -39,7 +37,8 @@
             <td data-title="Joined Date">{{user.joinDate}}</td>
             <td data-title="Cart">{{user.cart}}</td>
             <td data-title="Edit">
-              <i class="bi bi-pencil-square"></i>
+              <i class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#updateUserModal"></i>
+              <AddOrUpdateUser identify="updateUserModal"/>
             </td>
             <td data-title="Delete">
               <i class="bi bi-trash3-fill"></i>
@@ -93,7 +92,7 @@
 </template>
 
 <script>
-import AdminAddUser from '@/components/AdminAddUser.vue';
+import AddOrUpdateUser from '@/components/AddOrUpdateUser.vue';
 export default {
   computed: {
     users() {
@@ -104,7 +103,7 @@ export default {
     }
   },
   components: {
-    AdminAddUser
+    AddOrUpdateUser
   },
   props: {
     identify: String

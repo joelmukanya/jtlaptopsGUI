@@ -84,11 +84,12 @@ export default createStore({
         joinDate
       };
       let res = await axios.post(jtlaptopsURL+"users", data);
-      let results  = await res.data;
+      console.log(res);
+      let {results}  = await res.data;
+      console.log(results);
       if(results) {
         context.commit('setUsers', results);
         router.push({name: "login"});
-        context.commit('setShowSpinner', false);
       }
     }
   },
