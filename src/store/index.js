@@ -8,7 +8,8 @@ export default createStore({
     users: null,
     products: null,
     showSpinner: true,
-    readMeData: null 
+    readMeData: null,
+    errMsg: null
   },
   getters: {
     getUsers: state => state.users,
@@ -44,7 +45,6 @@ export default createStore({
       let {results } = await res.data;
       if(results) {
         context.commit('setUsers', results);
-        context.commit('setShowSpinner', false);
       }
     },
     fetchProducts: async (context)=> {
@@ -74,7 +74,7 @@ export default createStore({
     //Signup
     signUp: async (context, payload)=> {
       let {fullname, email, userpassword, userRole,
-        phonenumber, joinDate, } = payload;
+        phonenumber, joinDate } = payload;
       const data = {
         fullname, 
         email,
@@ -83,13 +83,16 @@ export default createStore({
         phonenumber,
         joinDate
       };
-      let res = await axios.post(jtlaptopsURL+"users", data);
-      console.log(res);
-      let {results}  = await res.data;
-      console.log(results);
-      if(results) {
-        context.commit('setUsers', results);
-        router.push({name: "login"});
+      try{
+        let res = await axios.post(jtlaptopsURL+"users", data);
+        let {results}  = await res.data;
+        if(results) {
+          context.commit('setUsers', results);
+          router.push({name: "login"});
+        }
+      }catch(e) {
+        const {data} = e.response
+        this.errMsg = data;       
       }
     }
   },

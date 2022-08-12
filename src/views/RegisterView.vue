@@ -43,19 +43,18 @@
 export default {
   data() {
     return {
-      fullname: null, 
-      email: null,
-      userpassword: null,
-      userRole: null,
-      phonenumber: null,
-      joinDate: null,
-      errMsg: null
+      fullname: '', 
+      email: '',
+      userpassword: '',
+      userRole: '',
+      phonenumber: '',
+      joinDate: '',
+      errMsg: ''
     }
   },
   methods: {
     signUp() {
-      try{
-        return this.$store.dispatch("signUp", 
+         this.$store.dispatch("signUp", 
           {
             fullname: this.fullname, 
             email: this.email,
@@ -65,9 +64,6 @@ export default {
             joinDate: this.joinDate,
           }
         );
-      }catch(e) {
-        this.errMsg = e.message;
-      }
     }
   },
   mounted() {

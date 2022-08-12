@@ -68,16 +68,21 @@ export default {
     },
     methods: {
         addOrUpdateUser() {
-            return this.$store.dispatch('signUp', 
-                {
-                    fullname: this.fullname , 
-                    email: this.email ,
-                    userpassword: this.userpassword ,
-                    userRole: this.userRole ,
-                    phonenumber: this.phonenumber ,
-                    joinDate: this.joinDate  
-                }
-            )
+            if(this.identify === "addUserModal") {
+                console.log("Adding using");
+                this.$store.dispatch('signUp', 
+                   {
+                       fullname: this.fullname , 
+                       email: this.email ,
+                       userpassword: this.userpassword ,
+                       userRole: this.userRole ,
+                       phonenumber: this.phonenumber ,
+                       joinDate: this.joinDate  
+                   }
+               )
+            }else {
+                console.log("Update");
+            }
         }
     }
 }
