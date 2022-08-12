@@ -11,6 +11,9 @@
                     <legend class="display-2">Add or update user</legend>
                     <form class="form" :method="this.methodArg"  @submit.prevent="addOrUpdateUser">
                         <div class="row">
+                            <input class="form-control col"                        v-model="id" type="number" placeholder="User's id optional"/>
+                        </div>
+                        <div class="row">
                             <input class="form-control col"                        v-model="fullname" type="text" placeholder="Enter your fullname" required/>
                         </div>
                         <div class="row">
@@ -54,6 +57,7 @@ export default {
     props: ['identify', 'methodArg'],
     data() {
         return {
+            id: 0,
             fullname: null, 
             email: null,
             userpassword: null,
@@ -69,6 +73,7 @@ export default {
                 console.log("Adding using");
                 this.$store.dispatch('signUp', 
                    {
+                       id: this.id,
                        fullname: this.fullname , 
                        email: this.email ,
                        userpassword: this.userpassword ,
@@ -78,7 +83,18 @@ export default {
                    }
                )
             }else {
-                console.log("Update");
+                console.log("Updating");
+                this.$store.dispatch('updateUser', 
+                   {
+                       id: this.id,
+                       fullname: this.fullname , 
+                       email: this.email ,
+                       userpassword: this.userpassword ,
+                       userRole: this.userRole ,
+                       phonenumber: this.phonenumber ,
+                       joinDate: this.joinDate  
+                   }
+               )
             }
         }
     }

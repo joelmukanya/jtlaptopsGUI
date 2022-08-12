@@ -101,9 +101,29 @@ export default createStore({
         console.lolg(e);    
       }
     },
-    // async updateUser(context, payload) {
-
-    // }
+    async updateUser(context, payload) {
+      let {id, fullname, email, userpassword, userRole,
+        phonenumber, joinDate } = payload;
+      const data = {
+        id,
+        fullname, 
+        email,
+        userpassword,
+        userRole,
+        phonenumber,
+        joinDate
+      };
+      try{
+        let res = await axios.put(jtlaptopsURL+"users", data);
+        let {results}  = await res.data;
+        if(results) {
+          context.commit('setUsers', results);
+          router.push({name: "login"});
+        }
+      }catch(e) {
+        console.lolg(e);    
+      }
+    }
   },
   modules: {
   }
