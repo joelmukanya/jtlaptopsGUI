@@ -9,7 +9,7 @@ export default createStore({
     products: null,
     showSpinner: true,
     readMeData: null,
-    errMsg: null
+    errMsg: ''
   },
   getters: {
     getUsers: state => state.users,
@@ -27,6 +27,9 @@ export default createStore({
     },
     setReadMeUrl(state, value) {
       state.readMeData = value
+    },
+    setErrMsg(state, value) {
+      state.errMsg = value
     }
   },
   actions: {
@@ -43,17 +46,20 @@ export default createStore({
     fetchUsers: async (context) => {
       let res = await axios.get(jtlaptopsURL+"users");
       let {results } = await res.data;
-      if(results) {
+      if(results instanceof(Array) ) {
         context.commit('setUsers', results);
+      }else {
+        context.commit('setErrMsg', results) ;
       }
     },
     fetchProducts: async (context)=> {
       let res = await axios.get(jtlaptopsURL+"products");
       let { results }  = await res.data;
-      if(results) {
+      if(results instanceof(Array)) {
         context.commit('setProducts', results);
         context.commit('setShowSpinner', false);
       }else {
+        context.commit('setErrMsg', results);
         context.commit('setShowSpinner', true);
       }
     },
@@ -67,8 +73,9 @@ export default createStore({
       let res = await axios.patch(jtlaptopsURL+"users", data);
       let results = await res.data;
       if(results) {
-        context.commit('setUsers', results);
-        context.commit('setShowSpinner', false);
+        // context.commit('setUsers', results);
+        // context.commit('setShowSpinner', false);
+
       }
     },
     //Signup
@@ -91,10 +98,12 @@ export default createStore({
           router.push({name: "login"});
         }
       }catch(e) {
-        const {data} = e.response
-        this.errMsg = data;       
+        console.lolg(e);    
       }
-    }
+    },
+    // async updateUser(context, payload) {
+
+    // }
   },
   modules: {
   }

@@ -9,17 +9,15 @@
             <div class="modal-body container">
                 <fieldset class="row">
                     <legend class="display-2">Add or update user</legend>
-                    <form class="form" @submit.prevent="addOrUpdateUser">
+                    <form class="form" :method="this.methodArg"  @submit.prevent="addOrUpdateUser">
                         <div class="row">
-                            <input class="form-control col" name="fullname" 
-                            v-model="fullname" type="text" placeholder="Enter your fullname" required/>
+                            <input class="form-control col"                        v-model="fullname" type="text" placeholder="Enter your fullname" required/>
                         </div>
                         <div class="row">
-                            <input class="form-control col" name="email"                       v-model="email" type="email" placeholder="Enter your email" required/>
+                            <input class="form-control col" v-model="email" type="email" placeholder="Enter your email" required/>
                         </div>
                         <div class="row">
-                            <input class="form-control col" name="userpassword"
-                            v-model="userpassword" type="password" placeholder="Enter your password" required/>
+                            <input class="form-control col" v-model="userpassword" type="password" placeholder="Enter your password" required/>
                         </div>
                         <div class="row">
                             <select class="form-select col" 
@@ -29,8 +27,7 @@
                             </select>
                         </div>
                         <div class="row">
-                            <input class="form-control col" name="phonenumber"
-                            v-model="phonenumber" type="tel" placeholder="Enter your phone number" maxlength="10"/>
+                            <input class="form-control col" v-model="phonenumber" type="tel" placeholder="Enter your phone number" maxlength="10"/>
                         </div> 
                         <div class="row">
                             <input class="form-control col" type="date" v-model="joinDate"/>
@@ -54,7 +51,7 @@
 
 <script>
 export default {
-    props: ['identify'],
+    props: ['identify', 'methodArg'],
     data() {
         return {
             fullname: null, 

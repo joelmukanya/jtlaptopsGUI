@@ -2,28 +2,23 @@
     <div class="container">
       <fieldset>
           <legend class="display-2">Please fill in your details.</legend>
-          <form class="form" @submit.prevent="signUp">
+          <form class="form" @submit.prevent="signUp" method="post">
               <div class="row">
-                <input class="form-control col" name="fullname" id="fullname"
-                v-model="fullname" type="text" placeholder="Enter your fullname" required/>
+                <input class="form-control col" v-model="fullname" type="text" placeholder="Enter your fullname" required/>
               </div>
               <div class="row">
-                <input class="form-control col" name="email" id="email"
-                v-model="email" type="email" placeholder="Enter your email" required/>
+                <input class="form-control col" v-model="email" type="email" placeholder="Enter your email" required/>
               </div>
               <div class="row">
-                <input class="form-control col" name="userpassword" id="userpassword"
-                v-model="userpassword" type="password" placeholder="Enter your password" required/>
+                <input class="form-control col" v-model="userpassword" type="password" placeholder="Enter your password" required/>
               </div>
               <div class="row">
-                <select class="form-select col" id="userRole"
-                v-model="userRole" aria-label="Select your role">
+                <select class="form-select col" v-model="userRole" aria-label="Select your role">
                     <option name="userRole" value="user" selected>User</option>
                 </select>
               </div>
               <div class="row">
-                <input class="form-control col" name="phonenumber" id="phonenumber"
-                v-model="phonenumber" type="tel" placeholder="Enter your phone number" maxlength="10"/>
+                <input class="form-control col" v-model="phonenumber" type="tel" placeholder="Enter your phone number" maxlength="10"/>
               </div> 
               <div class="row">
                 <input class="form-control col" type="date" v-model="joinDate"/>

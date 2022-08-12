@@ -4,7 +4,7 @@
       <div class="col-md">
         <button class="btn btn-primary" 
         data-bs-toggle="modal" data-bs-target="#addUserModal">Add New User</button>
-        <AddOrUpdateUser identify="addUserModal"/>
+        <AddOrUpdateUser methodArg="post" identify="addUserModal"/>
       </div>
       <div class="col-md">
         <button class="btn btn-primary">Add New Product</button>
@@ -38,7 +38,7 @@
             <td data-title="Cart">{{user.cart}}</td>
             <td data-title="Edit">
               <i class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#updateUserModal"></i>
-              <AddOrUpdateUser identify="updateUserModal"/>
+              <AddOrUpdateUser methodArg="put" identify="updateUserModal"/>
             </td>
             <td data-title="Delete">
               <i class="bi bi-trash3-fill"></i>
@@ -104,9 +104,6 @@ export default {
   },
   components: {
     AddOrUpdateUser
-  },
-  props: {
-    identify: String
   },
   mounted() {
     this.$store.dispatch('fetchUsers');
