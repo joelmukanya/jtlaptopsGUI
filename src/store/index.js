@@ -72,10 +72,9 @@ export default createStore({
       };
       let res = await axios.patch(jtlaptopsURL+"users", data);
       let results = await res.data;
-      if(results) {
-        // context.commit('setUsers', results);
-        // context.commit('setShowSpinner', false);
-
+      if(results instanceof Array) {
+        context.commit('setUsers', results[0]);
+        router.push({name: ""})
       }
     },
     //Signup
@@ -101,11 +100,10 @@ export default createStore({
         console.lolg(e);    
       }
     },
-    async updateUser(context, payload) {
-      let {id, fullname, email, userpassword, userRole,
+    async updateUser(context, payload, id) {
+      let {fullname, email, userpassword, userRole,
         phonenumber, joinDate } = payload;
       const data = {
-        id,
         fullname, 
         email,
         userpassword,
@@ -114,7 +112,7 @@ export default createStore({
         joinDate
       };
       try{
-        let res = await axios.put(jtlaptopsURL+"users", data);
+        let res = await axios.put(jtlaptopsURL+`users/${id}`, data);
         let {results}  = await res.data;
         if(results) {
           context.commit('setUsers', results);
@@ -122,6 +120,12 @@ export default createStore({
         }
       }catch(e) {
         console.lolg(e);    
+      }
+    },
+    deleteUser: async (context, id)=> {
+      let res = await axios.delete(jtlaptopsURL+`users/${id}`);
+      if(res) {
+        context.dispatch("fetchUsers");
       }
     }
   },
